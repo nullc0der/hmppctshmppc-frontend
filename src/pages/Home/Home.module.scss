@@ -1,0 +1,26 @@
+@import 'global-ui/ui';
+
+.container {
+    :global {
+        .header-section,
+        .about-section {
+            width: 100vw;
+            height: 300px;
+        }
+        .stats-section {
+            width: 100vw;
+            height: 500px;
+            position: relative;
+            background-image: linear-gradient(#c7c7c7, #ffffff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @include media-breakpoint-down(sm) {
+                height: auto;
+            }
+        }
+        .footer-section {
+            width: 100vw;
+        }
+    }
+}

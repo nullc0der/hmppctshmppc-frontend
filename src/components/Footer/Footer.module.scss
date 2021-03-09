@@ -1,0 +1,32 @@
+@import 'global-ui/ui';
+
+.container {
+    height: 60px;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    @include media-breakpoint-down(sm) {
+        height: auto;
+        padding: 0.5rem 0;
+        flex-direction: column;
+    }
+    :global {
+        .version {
+            cursor: pointer;
+        }
+        @include media-breakpoint-down(sm) {
+            .contact {
+                order: 1;
+            }
+            .version {
+                order: 2;
+            }
+            .copyright {
+                order: 3;
+            }
+        }
+    }
+}

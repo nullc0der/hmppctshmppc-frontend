@@ -1,0 +1,22 @@
+@import 'global-ui/ui';
+
+.container {
+    :global {
+        .coin-logos-wrapper {
+            height: 350px;
+            @include media-breakpoint-down(sm) {
+                height: 300px;
+            }
+            .coin-logo {
+                cursor: pointer;
+            }
+        }
+        .coin-logo {
+            width: 70px;
+
+            @include media-breakpoint-down(sm) {
+                width: 50px;
+            }
+        }
+    }
+}

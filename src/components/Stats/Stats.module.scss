@@ -1,0 +1,47 @@
+@import 'global-ui/ui';
+
+.container {
+    width: 700px;
+    padding: 1rem;
+    margin-left: 5rem;
+    @include media-breakpoint-down(sm) {
+        width: 100%;
+        margin-left: 0;
+        padding: 1rem 0.5rem;
+    }
+    :global {
+        .stats-text {
+            color: $primary-red;
+            p {
+                margin-bottom: 0;
+            }
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(#ffffff, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .btn-header-red {
+                visibility: hidden;
+            }
+            &:hover {
+                .btn-header-red {
+                    visibility: visible;
+                }
+            }
+        }
+        @include media-breakpoint-down(sm) {
+            .stats-info {
+                flex-direction: column;
+                .share-btn {
+                    margin-top: 0.5rem;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,30 @@
+@import 'global-ui/ui';
+@import 'bootstrap/scss/bootstrap';
+
+body {
+    background-color: #fff;
+    color: $dark;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#root,
+.app-main {
+    display: block;
+    min-width: 100vw;
+    min-height: 100vh;
+    height: 100%;
+}
+
+.btn-header-red {
+    margin-top: 1rem;
+    background-color: $primary-red;
+    color: #fff;
+    &:focus {
+        box-shadow: none;
+    }
+    &:hover {
+        color: #fff;
+    }
+}

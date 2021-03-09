@@ -1,0 +1,14 @@
+@import 'global-ui/ui';
+
+.container {
+    max-width: 60vw;
+    @include media-breakpoint-down(sm) {
+        max-width: unset;
+    }
+    :global {
+        .modal-body {
+            min-height: 400px;
+            background-image: linear-gradient(#ffffff, #c7c7c7);
+        }
+    }
+}
