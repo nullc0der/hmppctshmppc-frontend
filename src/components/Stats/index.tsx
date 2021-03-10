@@ -37,39 +37,47 @@ const DoughnutChart = ({
 
     return (
         <div className={cx}>
-            {!showStat && (
-                <div className="overlay">
-                    <button
-                        className="btn btn-header-red"
-                        onClick={handlePaymentDialogShow}>
-                        Send Payment
-                    </button>
-                </div>
+            {!showStat ? (
+                <>
+                    <div className="overlay">
+                        <button
+                            className="btn btn-header-red"
+                            onClick={handlePaymentDialogShow}>
+                            Send Payment
+                        </button>
+                    </div>
+                    <div className="overlay-removed">
+                        <p>Nice try!! but that's not gonna work 😜</p>
+                    </div>
+                </>
+            ) : (
+                <>
+                    <Doughnut
+                        data={data}
+                        options={{
+                            responsive: true,
+                            maintainAspectRatio: true,
+                            legend: {
+                                position: 'right',
+                                labels: {
+                                    usePointStyle: true,
+                                },
+                            },
+                        }}
+                    />
+                    <div className="d-flex flex-horizontal justify-content-center align-items-center mt-4 stats-info">
+                        <div className="stats-text mr-4">
+                            <p>MM/DD/YYYY ##:##:## UTC</p>
+                            <p>Total Payments Sent: 0</p>
+                        </div>
+                        <div className="share-btn">
+                            <button className="btn btn-info">
+                                <i className="fa fa-twitter mr-2"></i>Share
+                            </button>
+                        </div>
+                    </div>
+                </>
             )}
-            <Doughnut
-                data={data}
-                options={{
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    legend: {
-                        position: 'right',
-                        labels: {
-                            usePointStyle: true,
-                        },
-                    },
-                }}
-            />
-            <div className="d-flex flex-horizontal justify-content-center align-items-center mt-4 stats-info">
-                <div className="stats-text mr-4">
-                    <p>MM/DD/YYYY ##:##:## UTC</p>
-                    <p>Total Payments Sent: 0</p>
-                </div>
-                <div className="share-btn">
-                    <button className="btn btn-info">
-                        <i className="fa fa-twitter mr-2"></i>Share
-                    </button>
-                </div>
-            </div>
         </div>
     )
 }

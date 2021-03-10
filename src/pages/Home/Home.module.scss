@@ -16,7 +16,7 @@
             align-items: center;
             justify-content: center;
             @include media-breakpoint-down(sm) {
-                height: auto;
+                height: 350px;
             }
         }
         .footer-section {

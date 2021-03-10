@@ -16,22 +16,47 @@
                 margin-bottom: 0;
             }
         }
+        .overlay-removed,
         .overlay {
             position: absolute;
             top: 0;
             bottom: 0;
             left: 0;
             right: 0;
-            background-color: rgba(#ffffff, 0.95);
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+        .overlay {
+            background-color: rgba(#ffffff, 0.95);
+            z-index: 1;
             .btn-header-red {
                 visibility: hidden;
             }
             &:hover {
                 .btn-header-red {
                     visibility: visible;
+                }
+            }
+            &:before {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                content: '';
+                background-position: center;
+                background-repeat: no-repeat;
+                z-index: -1;
+                filter: blur(10px);
+                @include media-breakpoint-down(sm) {
+                    background-image: url('/assets/img/stats-preview-sm.png');
+                }
+                @include media-breakpoint-only(md) {
+                    background-image: url('/assets/img/stats-preview-md.png');
+                }
+                @include media-breakpoint-up(lg) {
+                    background-image: url('/assets/img/stats-preview.png');
                 }
             }
         }
