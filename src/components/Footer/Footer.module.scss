@@ -12,6 +12,9 @@
         height: auto;
         padding: 0.5rem 0;
         flex-direction: column;
+        span {
+            font-size: 0.75rem;
+        }
     }
     :global {
         .version {
