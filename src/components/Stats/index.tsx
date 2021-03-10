@@ -43,7 +43,7 @@ const DoughnutChart = ({
                         <button
                             className="btn btn-header-red"
                             onClick={handlePaymentDialogShow}>
-                            Send Payment
+                            Send Crypto
                         </button>
                     </div>
                     <div className="overlay-removed">

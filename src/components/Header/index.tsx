@@ -30,7 +30,7 @@ const Header = ({
             <button
                 className="btn btn-small btn-header-red"
                 onClick={handlePaymentDialogShow}>
-                Send Payment
+                Send Crypto
             </button>
             <PaymentDialog
                 show={showPaymentDialog}
