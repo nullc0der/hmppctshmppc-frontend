@@ -137,7 +137,7 @@ const PaymentDialog = ({
                         <div className="d-flex flex-column justify-content-center justify-content-md-around coin-logos-wrapper">
                             <div className="d-flex justify-content-around">
                                 <img
-                                    className="coin-logo img-fluid"
+                                    className="coin-logo img-fluid ethereum"
                                     alt="Ethereum Logo"
                                     src={EthereumLogo}
                                     onClick={() =>
@@ -145,7 +145,7 @@ const PaymentDialog = ({
                                     }
                                 />
                                 <img
-                                    className="coin-logo img-fluid"
+                                    className="coin-logo img-fluid polkadot"
                                     alt="Polkadot Logo"
                                     src={PolkadotLogo}
                                     onClick={() =>
