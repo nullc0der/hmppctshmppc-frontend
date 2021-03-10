@@ -4,29 +4,14 @@ import classnames from 'classnames'
 import s from './About.module.scss'
 
 type AboutProps = {
-    showStat: boolean
-    handlePaymentDialogShow: () => void
     className?: string
 }
 
-const About = ({
-    className,
-    showStat,
-    handlePaymentDialogShow,
-}: AboutProps) => {
+const About = ({ className }: AboutProps) => {
     const cx: string = classnames(s.container, className)
 
     return (
         <div className={cx}>
-            {!showStat && (
-                <div className="overlay">
-                    <button
-                        className="btn btn-header-red"
-                        onClick={handlePaymentDialogShow}>
-                        Send Payment
-                    </button>
-                </div>
-            )}
             <h6>About</h6>
             <div className="d-none d-md-flex flex-md-column justify-content-md-center align-items-md-center">
                 <p>

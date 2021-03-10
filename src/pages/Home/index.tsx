@@ -32,10 +32,7 @@ const Home = () => {
                 />
             </div>
             <div className="about-section">
-                <About
-                    showStat={showStat}
-                    handlePaymentDialogShow={handlePaymentDialogShow}
-                />
+                <About />
             </div>
             <div className="footer-section">
                 <Footer />
