@@ -1,14 +1,27 @@
 @import 'global-ui/ui';
 
 .container {
-    max-width: 60vw;
-    @include media-breakpoint-down(sm) {
-        max-width: unset;
+    @include media-breakpoint-up(sm) {
+        max-width: 60vw;
     }
+    @include media-breakpoint-up(xl) {
+        max-width: 40vw;
+    }
+    // @include media-breakpoint-down(sm) {
+    //     max-width: unset;
+    // }
     :global {
+        .modal-content {
+            border: none;
+            border-radius: 1rem;
+        }
         .modal-body {
             min-height: 400px;
+            border-radius: 1rem;
             background-image: linear-gradient(#ffffff, #c7c7c7);
+            @include media-breakpoint-down(sm) {
+                min-height: 300px;
+            }
         }
     }
 }
