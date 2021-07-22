@@ -49,7 +49,7 @@ const PaymentSuccess = ({
             </span>
             <div className="alert alert-secondary my-2">
                 <span>
-                    Tx IDs: {parseTxIds(paymentSuccessInfo?.tx_ids || [])}
+                    Tx ID(s): {parseTxIds(paymentSuccessInfo?.tx_ids || [])}
                     <CopyToClipboard
                         text={parseTxIds(paymentSuccessInfo?.tx_ids || [])}
                         onCopy={() => setShowTxIDCopiedTooltip(true)}>
