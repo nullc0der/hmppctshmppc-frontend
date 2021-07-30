@@ -2,16 +2,16 @@ import CoinLogo from 'components/CoinLogo'
 
 type CurrencySelectProps = {
     setCurrentStep: (nextStep: string) => void
-    setSelectedCurrency: (selectedCurrency: string) => void
+    onClickCurrency: (selectedCurrency: string) => void
 }
 
 const CurrencySelect = ({
     setCurrentStep,
-    setSelectedCurrency,
+    onClickCurrency,
 }: CurrencySelectProps) => {
     const onClickCoinLogo = (selectedCurrency: string) => {
         setCurrentStep('paymentAddress')
-        setSelectedCurrency(selectedCurrency)
+        onClickCurrency(selectedCurrency)
     }
 
     return (

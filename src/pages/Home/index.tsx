@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import classnames from 'classnames'
 
+import { useMatomo } from '@datapunt/matomo-tracker-react'
+
 import Header from 'components/Header'
 import Stats from 'components/Stats'
 import About from 'components/About'
@@ -11,8 +13,15 @@ import s from './Home.module.scss'
 const Home = () => {
     const [showStat, setShowStat] = useState(false)
     const [showPaymentDialog, setShowPaymentDialog] = useState(false)
+
+    const { trackEvent } = useMatomo()
+
     const handlePaymentDialogClose = () => setShowPaymentDialog(false)
-    const handlePaymentDialogShow = () => setShowPaymentDialog(true)
+    const handlePaymentDialogShow = () => {
+        trackEvent({ category: 'Dialog', action: 'Open', name: 'Payment' })
+        setShowPaymentDialog(true)
+    }
+
     const cx: string = classnames(s.container)
 
     return (

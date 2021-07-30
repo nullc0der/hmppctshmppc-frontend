@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import classnames from 'classnames'
+
+import { useMatomo } from '@datapunt/matomo-tracker-react'
 
 import ChangelogDialog from 'components/ChangelogDialog'
 
@@ -11,8 +13,14 @@ type FooterProps = {
 
 const Footer = ({ className }: FooterProps) => {
     const [showChangelogDialog, setShowChangelogDialog] = useState(false)
+
+    const { trackEvent } = useMatomo()
+
     const handleChangelogDialogClose = () => setShowChangelogDialog(false)
-    const handleChangelogDialogOpen = () => setShowChangelogDialog(true)
+    const handleChangelogDialogOpen = () => {
+        trackEvent({ category: 'Dialog', action: 'Open', name: 'Changelog' })
+        setShowChangelogDialog(true)
+    }
 
     const cx: string = classnames(s.container, className)
 
@@ -20,10 +28,15 @@ const Footer = ({ className }: FooterProps) => {
         <div className={cx}>
             <span className="copyright">&copy; 2021 All rights reserved</span>
             <span className="contact">
-                <i className="fa fa-twitter mr-2"></i>Contact
+                <a
+                    href="https://twitter.com/hmppctshmppc"
+                    target="_blank"
+                    rel="noreferrer">
+                    <i className="fa fa-twitter mr-2"></i>Contact
+                </a>
             </span>
             <span className="version" onClick={handleChangelogDialogOpen}>
-                Site Version: 0.0.1
+                Site Version: 0.0.2
             </span>
             <ChangelogDialog
                 show={showChangelogDialog}

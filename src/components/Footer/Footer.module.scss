@@ -20,6 +20,12 @@
         .version {
             cursor: pointer;
         }
+        .contact {
+            a {
+                color: #fff;
+                text-decoration: none;
+            }
+        }
         @include media-breakpoint-down(sm) {
             .contact {
                 order: 1;

@@ -4,6 +4,7 @@ import get from 'lodash/get'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import Overlay from 'react-bootstrap/Overlay'
 import Tooltip from 'react-bootstrap/Tooltip'
+import { useMatomo } from '@datapunt/matomo-tracker-react'
 
 import { initiatePayment, checkPaymentStatus } from 'api/payment'
 import { setPaymentInfo, getPaymentInfo, setAccessToken } from 'utils/store'
@@ -32,8 +33,10 @@ const PaymentAddress = ({
         showPaymentAddressCopiedTooltip,
         setShowPaymentAddressCopiedTooltip,
     ] = useState(false)
+    const [showComingSoon, setShowComingSoon] = useState(false)
     const pollPaymentStatusIntervalID = useRef<number | null>(null)
     const paymentAddressCopiedTooltipTarget = useRef(null)
+    const { trackEvent } = useMatomo()
 
     // NOTE: Should we clear payment info from localstorage if expired ???
     const pollPaymentStatus = () => {
@@ -60,6 +63,11 @@ const PaymentAddress = ({
                                 ),
                             })
                             setCurrentStep('paymentSuccess')
+                            trackEvent({
+                                category: 'Payment Dialog',
+                                action: 'Payment Success',
+                                name: selectedCurrency,
+                            })
                         }
                     }
                 ),
@@ -68,18 +76,26 @@ const PaymentAddress = ({
     }
 
     useEffect(() => {
-        initiatePayment({ currency: selectedCurrency }).then((response) => {
-            if (response.ok) {
-                setPaymentAddress(get(response.data, 'wallet_address', ''))
-                setPaymentInfo({
-                    payment_id: get(response.data, 'payment_id', ''),
-                    payment_address: get(response.data, 'wallet_address', ''),
-                    currency_name: selectedCurrency,
-                })
-            } else {
-                setPaymentAddressFetchError(true)
-            }
-        })
+        if (selectedCurrency === 'polkadot' || selectedCurrency === 'ada') {
+            setShowComingSoon(true)
+        } else {
+            initiatePayment({ currency: selectedCurrency }).then((response) => {
+                if (response.ok) {
+                    setPaymentAddress(get(response.data, 'wallet_address', ''))
+                    setPaymentInfo({
+                        payment_id: get(response.data, 'payment_id', ''),
+                        payment_address: get(
+                            response.data,
+                            'wallet_address',
+                            ''
+                        ),
+                        currency_name: selectedCurrency,
+                    })
+                } else {
+                    setPaymentAddressFetchError(true)
+                }
+            })
+        }
     }, [selectedCurrency])
 
     useEffect(
@@ -91,68 +107,81 @@ const PaymentAddress = ({
     return (
         <div className="d-flex flex-column align-items-center justify-content-center payment-address-wrapper">
             <CoinLogo currencyName={selectedCurrency} />
-            <span className="mt-3">
-                Send a minimum crypto payment to the {selectedCurrency} address
-                below.
-            </span>
-            <div className="alert alert-secondary mt-2">
-                {!paymentAddressFetchError ? (
-                    paymentAddress ? (
-                        <span>
-                            {paymentAddress}
-                            <CopyToClipboard
-                                text={paymentAddress}
-                                onCopy={() =>
-                                    setShowPaymentAddressCopiedTooltip(true)
-                                }>
-                                <i
-                                    className="fa fa-clone ml-2 copy-button"
-                                    title="click to copy"
-                                    ref={paymentAddressCopiedTooltipTarget}
-                                />
-                            </CopyToClipboard>
-                            <Overlay
-                                target={
-                                    paymentAddressCopiedTooltipTarget.current
-                                }
-                                show={showPaymentAddressCopiedTooltip}
-                                placement="right">
-                                {(props) => (
-                                    <Tooltip
-                                        id="payment-address-copied-tooltip"
-                                        {...props}>
-                                        Payment Address Copied
-                                    </Tooltip>
-                                )}
-                            </Overlay>
-                        </span>
-                    ) : (
-                        <span>
-                            Fetching payment address{' '}
-                            <i className="fa fa-spin fa-spinner ml-2" />
-                        </span>
-                    )
-                ) : (
-                    <span>
-                        There is some issue fetching payment address, please try
-                        later
+            {!showComingSoon ? (
+                <>
+                    <span className="mt-3">
+                        Send a minimum crypto payment to the {selectedCurrency}{' '}
+                        address below.
                     </span>
-                )}
-            </div>
-            {!!paymentAddress && (
-                <button
-                    className="btn btn-success"
-                    onClick={pollPaymentStatus}
-                    disabled={isCheckingPaymentStatus}>
-                    {!isCheckingPaymentStatus ? (
-                        "Click here once you're done sending"
-                    ) : (
-                        <>
-                            Checking payment confirmation
-                            <i className="fa fa-spinner fa-spin ml-2" />
-                        </>
+                    <div className="alert alert-secondary mt-2">
+                        {!paymentAddressFetchError ? (
+                            paymentAddress ? (
+                                <span>
+                                    {paymentAddress}
+                                    <CopyToClipboard
+                                        text={paymentAddress}
+                                        onCopy={() =>
+                                            setShowPaymentAddressCopiedTooltip(
+                                                true
+                                            )
+                                        }>
+                                        <i
+                                            className="fa fa-clone ml-2 copy-button"
+                                            title="click to copy"
+                                            ref={
+                                                paymentAddressCopiedTooltipTarget
+                                            }
+                                        />
+                                    </CopyToClipboard>
+                                    <Overlay
+                                        target={
+                                            paymentAddressCopiedTooltipTarget.current
+                                        }
+                                        show={showPaymentAddressCopiedTooltip}
+                                        placement="right">
+                                        {(props) => (
+                                            <Tooltip
+                                                id="payment-address-copied-tooltip"
+                                                {...props}>
+                                                Payment Address Copied
+                                            </Tooltip>
+                                        )}
+                                    </Overlay>
+                                </span>
+                            ) : (
+                                <span>
+                                    Fetching payment address{' '}
+                                    <i className="fa fa-spin fa-spinner ml-2" />
+                                </span>
+                            )
+                        ) : (
+                            <span>
+                                There is some issue fetching payment address,
+                                please try later
+                            </span>
+                        )}
+                    </div>
+                    {!!paymentAddress && (
+                        <button
+                            className="btn btn-success"
+                            onClick={pollPaymentStatus}
+                            disabled={isCheckingPaymentStatus}>
+                            {!isCheckingPaymentStatus ? (
+                                "Click here once you're done sending"
+                            ) : (
+                                <>
+                                    Checking payment confirmation
+                                    <i className="fa fa-spinner fa-spin ml-2" />
+                                </>
+                            )}
+                        </button>
                     )}
-                </button>
+                </>
+            ) : (
+                <span className="mt-4">
+                    {selectedCurrency} support is coming soon, till then you can
+                    try with other currencies
+                </span>
             )}
         </div>
     )

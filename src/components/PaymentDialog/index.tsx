@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import classnames from 'classnames'
 
+import { useMatomo } from '@datapunt/matomo-tracker-react'
+
 import ModalDialog from 'components/ModalDialog'
 
 import CurrencySelect from 'components/PaymentDialog/CurrencySelect'
@@ -35,7 +37,19 @@ const PaymentDialog = ({
     const [paymentSuccessInfo, setPaymentSuccessInfo] = useState<
         IPaymentSuccessInfo | undefined
     >(undefined)
+
+    const { trackEvent } = useMatomo()
+
     const cx: string = classnames(s.container, className)
+
+    const onClickCurrency = (currency: string) => {
+        trackEvent({
+            category: 'Payment Dialog',
+            action: 'Select',
+            name: currency,
+        })
+        setSelectedCurrency(currency)
+    }
 
     useEffect(() => {
         setCurrentStep(defaultCurrentStep)
@@ -55,7 +69,7 @@ const PaymentDialog = ({
                 return (
                     <CurrencySelect
                         setCurrentStep={setCurrentStep}
-                        setSelectedCurrency={setSelectedCurrency}
+                        onClickCurrency={onClickCurrency}
                     />
                 )
             case 'paymentAddress':
