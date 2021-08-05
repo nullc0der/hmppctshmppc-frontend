@@ -40,7 +40,7 @@ const initialData = {
 
 const shareButtonText = (): string => {
     const text =
-        'I just paid crypto to see how much others paid crypto. See results for yourself here. https://howmanypeoplepaidcryptotoseehowmanypeoplepaidcrypto.com/ @hmppctshmppc'
+        'I just paid #Crypto to see how many others paid crypto. See results for yourself here. \nhttps://howmanypeoplepaidcryptotoseehowmanypeoplepaidcrypto.com/\n@hmppctshmppc\n\n$btc $doge $xmr #cryptocurrency'
     return encodeURIComponent(text)
 }
 

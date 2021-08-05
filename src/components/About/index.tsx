@@ -18,19 +18,19 @@ const About = ({ className }: AboutProps) => {
                     How many people paid crypto to see how many people paid
                     crypto
                 </p>
-                <p>is about a visualize fun way to see how many people paid</p>
+                <p>is about a visually fun way to see how many people paid</p>
                 <p>crypto to see how many people paid crypto. This site was</p>
                 <p>
-                    inspired by doge coin, human creativity, humor, and most of
+                    inspired by dogecoin, human creativity, humor, and most of
                 </p>
                 <p>all as a father dedicated to his little mountain.</p>
             </div>
             <div className="d-xs-block d-md-none">
                 <p>
                     How many people paid crypto to see how many people paid
-                    crypto is about a visualize fun way to see how many people
+                    crypto is about a visually fun way to see how many people
                     paid crypto to see how many people paid crypto. This site
-                    was inspired by doge coin, human creativity, humor, and most
+                    was inspired by dogecoin, human creativity, humor, and most
                     of all as a father dedicated to his little mountain.
                 </p>
             </div>

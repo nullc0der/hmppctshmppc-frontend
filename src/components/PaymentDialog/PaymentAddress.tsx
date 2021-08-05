@@ -76,7 +76,11 @@ const PaymentAddress = ({
     }
 
     useEffect(() => {
-        if (selectedCurrency === 'polkadot' || selectedCurrency === 'ada') {
+        if (
+            selectedCurrency === 'polkadot' ||
+            selectedCurrency === 'ada' ||
+            selectedCurrency === 'ethereum'
+        ) {
             setShowComingSoon(true)
         } else {
             initiatePayment({ currency: selectedCurrency }).then((response) => {
@@ -103,6 +107,16 @@ const PaymentAddress = ({
             window.clearInterval(pollPaymentStatusIntervalID.current || 0),
         []
     )
+
+    useEffect(() => {
+        if (showPaymentAddressCopiedTooltip) {
+            const timeOut = window.setTimeout(
+                () => setShowPaymentAddressCopiedTooltip(false),
+                3000
+            )
+            return () => window.clearTimeout(timeOut)
+        }
+    }, [showPaymentAddressCopiedTooltip])
 
     return (
         <div className="d-flex flex-column align-items-center justify-content-center payment-address-wrapper">
@@ -143,7 +157,7 @@ const PaymentAddress = ({
                                             <Tooltip
                                                 id="payment-address-copied-tooltip"
                                                 {...props}>
-                                                Payment Address Copied
+                                                Address Copied
                                             </Tooltip>
                                         )}
                                     </Overlay>

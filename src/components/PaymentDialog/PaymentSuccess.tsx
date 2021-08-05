@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import Overlay from 'react-bootstrap/Overlay'
@@ -39,6 +39,16 @@ const PaymentSuccess = ({
 }: PaymentSuccessProps) => {
     const [showTxIDCopiedTooltip, setShowTxIDCopiedTooltip] = useState(false)
     const txIDCopiedTooltipTarget = useRef(null)
+
+    useEffect(() => {
+        if (showTxIDCopiedTooltip) {
+            const timeOut = window.setTimeout(
+                () => setShowTxIDCopiedTooltip(false),
+                3000
+            )
+            return () => window.clearTimeout(timeOut)
+        }
+    }, [showTxIDCopiedTooltip])
 
     return (
         <div className="d-flex flex-column align-items-center">
