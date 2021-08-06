@@ -75,11 +75,15 @@ const PaymentAddress = ({
         )
     }
 
+    const onClickBack = () => {
+        setCurrentStep('currencySelect')
+    }
+
     useEffect(() => {
         if (
-            selectedCurrency === 'polkadot' ||
-            selectedCurrency === 'ada' ||
-            selectedCurrency === 'ethereum'
+            ['bitcoin', 'polkadot', 'ada', 'ethereum'].includes(
+                selectedCurrency
+            )
         ) {
             setShowComingSoon(true)
         } else {
@@ -193,10 +197,18 @@ const PaymentAddress = ({
                 </>
             ) : (
                 <span className="mt-4">
-                    {selectedCurrency} support is coming soon, till then you can
-                    try with other currencies
+                    This{' '}
+                    {selectedCurrency === 'ethereum' ||
+                    selectedCurrency === 'polkadot' ||
+                    selectedCurrency === 'ada'
+                        ? 'token'
+                        : 'coin'}{' '}
+                    is syncing currently, it will be available for payment soon
                 </span>
             )}
+            <button className="btn btn-link" onClick={onClickBack}>
+                Go Back
+            </button>
         </div>
     )
 }

@@ -23,7 +23,7 @@ const About = ({ className }: AboutProps) => {
                 <p>
                     inspired by dogecoin, human creativity, humor, and most of
                 </p>
-                <p>all as a father dedicated to his little mountain.</p>
+                <p>all a father dedicated to his little mountain.</p>
             </div>
             <div className="d-xs-block d-md-none">
                 <p>
@@ -31,7 +31,7 @@ const About = ({ className }: AboutProps) => {
                     crypto is about a visually fun way to see how many people
                     paid crypto to see how many people paid crypto. This site
                     was inspired by dogecoin, human creativity, humor, and most
-                    of all as a father dedicated to his little mountain.
+                    of all a father dedicated to his little mountain.
                 </p>
             </div>
         </div>

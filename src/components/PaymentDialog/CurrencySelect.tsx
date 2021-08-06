@@ -20,12 +20,12 @@ const CurrencySelect = ({
             <div className="d-flex flex-column justify-content-center justify-content-around coin-logos-wrapper">
                 <div className="d-flex justify-content-around">
                     <CoinLogo
-                        currencyName={'ethereum'}
-                        onClickCoinLogo={() => onClickCoinLogo('ethereum')}
+                        currencyName={'dogecoin'}
+                        onClickCoinLogo={() => onClickCoinLogo('dogecoin')}
                     />
                     <CoinLogo
-                        currencyName={'polkadot'}
-                        onClickCoinLogo={() => onClickCoinLogo('polkadot')}
+                        currencyName={'monero'}
+                        onClickCoinLogo={() => onClickCoinLogo('monero')}
                     />
                     <CoinLogo
                         currencyName={'ada'}
@@ -38,12 +38,12 @@ const CurrencySelect = ({
                         onClickCoinLogo={() => onClickCoinLogo('bitcoin')}
                     />
                     <CoinLogo
-                        currencyName={'dogecoin'}
-                        onClickCoinLogo={() => onClickCoinLogo('dogecoin')}
+                        currencyName={'ethereum'}
+                        onClickCoinLogo={() => onClickCoinLogo('ethereum')}
                     />
                     <CoinLogo
-                        currencyName={'monero'}
-                        onClickCoinLogo={() => onClickCoinLogo('monero')}
+                        currencyName={'polkadot'}
+                        onClickCoinLogo={() => onClickCoinLogo('polkadot')}
                     />
                 </div>
             </div>
