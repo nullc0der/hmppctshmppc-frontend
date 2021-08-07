@@ -101,9 +101,15 @@ const PaymentAddress = ({
                     })
                 } else {
                     setPaymentAddressFetchError(true)
+                    trackEvent({
+                        category: 'Payment Dialog',
+                        action: 'Payment Address Generation Error',
+                        name: selectedCurrency,
+                    })
                 }
             })
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedCurrency])
 
     useEffect(
