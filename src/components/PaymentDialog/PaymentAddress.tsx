@@ -80,11 +80,7 @@ const PaymentAddress = ({
     }
 
     useEffect(() => {
-        if (
-            ['bitcoin', 'polkadot', 'ada', 'ethereum'].includes(
-                selectedCurrency
-            )
-        ) {
+        if (['polkadot', 'ada', 'ethereum'].includes(selectedCurrency)) {
             setShowComingSoon(true)
         } else {
             initiatePayment({ currency: selectedCurrency }).then((response) => {
