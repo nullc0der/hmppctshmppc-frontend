@@ -25,7 +25,7 @@ const About = ({ className }: AboutProps) => {
                 </p>
                 <p>all a father dedicated to his little mountain.</p>
             </div>
-            <div className="d-xs-block d-md-none">
+            <div className="d-xs-block d-md-none text-center">
                 <p>
                     How many people paid crypto to see how many people paid
                     crypto is about a visually fun way to see how many people

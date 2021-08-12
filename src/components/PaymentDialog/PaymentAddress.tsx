@@ -176,7 +176,7 @@ const PaymentAddress = ({
                             )
                         ) : (
                             <span>
-                                There is some issue fetching payment address,
+                                There was an issue fetching a payment address,
                                 please try later
                             </span>
                         )}

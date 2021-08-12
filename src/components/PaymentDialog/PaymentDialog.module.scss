@@ -4,9 +4,9 @@
     :global {
         .coin-logos-wrapper,
         .payment-address-wrapper {
-            height: 300px;
+            min-height: 300px;
             @include media-breakpoint-down(sm) {
-                height: 200px;
+                min-height: 200px;
             }
         }
         .coin-logos-wrapper {
