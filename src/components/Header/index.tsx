@@ -79,7 +79,7 @@ const Header = ({
                 onClick={handlePaymentDialogShow}>
                 {defaultCurrentStep === 'paymentSuccess'
                     ? "Show previous payment's tx id"
-                    : 'Send Crypto'}
+                    : 'Pay Crypto'}
             </button>
             <PaymentDialog
                 show={showPaymentDialog}

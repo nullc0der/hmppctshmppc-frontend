@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import classnames from 'classnames'
 
 import { useMatomo } from '@datapunt/matomo-tracker-react'
@@ -14,13 +14,18 @@ const Home = () => {
     const [showStat, setShowStat] = useState(false)
     const [showPaymentDialog, setShowPaymentDialog] = useState(false)
 
-    const { trackEvent } = useMatomo()
+    const { trackEvent, trackPageView } = useMatomo()
 
     const handlePaymentDialogClose = () => setShowPaymentDialog(false)
     const handlePaymentDialogShow = () => {
         trackEvent({ category: 'Dialog', action: 'Open', name: 'Payment' })
         setShowPaymentDialog(true)
     }
+
+    useEffect(() => {
+        trackPageView({})
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const cx: string = classnames(s.container)
 

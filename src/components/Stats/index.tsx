@@ -93,7 +93,7 @@ const Stats = ({
                         <button
                             className="btn btn-header-red"
                             onClick={handlePaymentDialogShow}>
-                            Send Crypto
+                            Pay Crypto
                         </button>
                     </div>
                     <div className="overlay-removed">
