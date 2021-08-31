@@ -8,6 +8,7 @@ import { useMatomo } from '@datapunt/matomo-tracker-react'
 
 import { initiatePayment, checkPaymentStatus } from 'api/payment'
 import { setPaymentInfo, getPaymentInfo, setAccessToken } from 'utils/store'
+import CURRENCY from 'constants/currency'
 
 import CoinLogo from 'components/CoinLogo'
 
@@ -34,6 +35,7 @@ const PaymentAddress = ({
         setShowPaymentAddressCopiedTooltip,
     ] = useState(false)
     const [showComingSoon, setShowComingSoon] = useState(false)
+    const [currencyAmountPerUSD, setCurrencyAmountPerUSD] = useState(0)
     const pollPaymentStatusIntervalID = useRef<number | null>(null)
     const paymentAddressCopiedTooltipTarget = useRef(null)
     const { trackEvent } = useMatomo()
@@ -95,6 +97,9 @@ const PaymentAddress = ({
                         ),
                         currency_name: selectedCurrency,
                     })
+                    setCurrencyAmountPerUSD(
+                        get(response.data, 'per_usd_amount', 0)
+                    )
                 } else {
                     setPaymentAddressFetchError(true)
                     trackEvent({
@@ -129,9 +134,14 @@ const PaymentAddress = ({
             <CoinLogo currencyName={selectedCurrency} />
             {!showComingSoon ? (
                 <>
-                    <span className="mt-3">
+                    {/* <span className="mt-3">
                         Send a minimum crypto payment to the {selectedCurrency}{' '}
                         address below.
+                    </span> */}
+                    <span className="mt-3">
+                        Suggested minimum amount of {selectedCurrency} to send 
+                        {currencyAmountPerUSD}
+                        {CURRENCY[selectedCurrency]['ticker']} = $1USD
                     </span>
                     <div className="alert alert-secondary mt-2">
                         {!paymentAddressFetchError ? (
