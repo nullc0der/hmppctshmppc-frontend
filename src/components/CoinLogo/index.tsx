@@ -18,7 +18,7 @@ const CoinLogo = ({
         case 'ethereum':
             return (
                 <img
-                    className="coin-logo img-fluid ethereum"
+                    className="coin-logo img-fluid"
                     alt="Ethereum Logo"
                     src={EthereumLogo}
                     onClick={() => onClickCoinLogo()}
@@ -28,7 +28,7 @@ const CoinLogo = ({
         case 'polkadot':
             return (
                 <img
-                    className="coin-logo img-fluid polkadot"
+                    className="coin-logo img-fluid"
                     alt="Polkadot Logo"
                     src={PolkadotLogo}
                     onClick={() => onClickCoinLogo()}

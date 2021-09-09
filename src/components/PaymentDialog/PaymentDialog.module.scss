@@ -18,12 +18,6 @@
             width: 70px;
             @include media-breakpoint-down(sm) {
                 width: 50px;
-                &.ethereum {
-                    height: 60px;
-                }
-                &.polkadot {
-                    height: 55px;
-                }
             }
         }
         .copy-button {
