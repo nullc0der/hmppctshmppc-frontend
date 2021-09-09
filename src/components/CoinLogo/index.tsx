@@ -1,11 +1,9 @@
-import React from 'react'
-
-import EthereumLogo from 'assets/img/ethereum-eth-logo.svg'
-import PolkadotLogo from 'assets/img/polkadot-new-dot-logo.svg'
-import AdaLogo from 'assets/img/cardano-ada-logo.svg'
-import BitcoinLogo from 'assets/img/bitcoin-btc-logo.svg'
-import DogecoinLogo from 'assets/img/dogecoin-doge-logo.svg'
-import MoneroLogo from 'assets/img/monero-xmr-logo.svg'
+import EthereumLogo from 'cryptocurrency-icons/svg/color/eth.svg'
+import PolkadotLogo from 'cryptocurrency-icons/svg/color/dot.svg'
+import AdaLogo from 'cryptocurrency-icons/svg/color/ada.svg'
+import BitcoinLogo from 'cryptocurrency-icons/svg/color/btc.svg'
+import DogecoinLogo from 'cryptocurrency-icons/svg/color/doge.svg'
+import MoneroLogo from 'cryptocurrency-icons/svg/color/xmr.svg'
 
 type CoinLogoProps = {
     currencyName: string
@@ -24,6 +22,7 @@ const CoinLogo = ({
                     alt="Ethereum Logo"
                     src={EthereumLogo}
                     onClick={() => onClickCoinLogo()}
+                    title="Ethereum"
                 />
             )
         case 'polkadot':
@@ -33,6 +32,7 @@ const CoinLogo = ({
                     alt="Polkadot Logo"
                     src={PolkadotLogo}
                     onClick={() => onClickCoinLogo()}
+                    title="Polkadot"
                 />
             )
         case 'ada':
@@ -42,6 +42,7 @@ const CoinLogo = ({
                     alt="Ada Logo"
                     src={AdaLogo}
                     onClick={() => onClickCoinLogo()}
+                    title="Cardano"
                 />
             )
         case 'bitcoin':
@@ -51,6 +52,7 @@ const CoinLogo = ({
                     alt="Bitcoin Logo"
                     src={BitcoinLogo}
                     onClick={() => onClickCoinLogo()}
+                    title="Bitcoin"
                 />
             )
         case 'dogecoin':
@@ -60,6 +62,7 @@ const CoinLogo = ({
                     alt="Dogecoin Logo"
                     src={DogecoinLogo}
                     onClick={() => onClickCoinLogo()}
+                    title="Dogecoin"
                 />
             )
         case 'monero':
@@ -69,6 +72,7 @@ const CoinLogo = ({
                     alt="Monero Logo"
                     src={MoneroLogo}
                     onClick={() => onClickCoinLogo()}
+                    title="Monero"
                 />
             )
         default:
@@ -78,6 +82,7 @@ const CoinLogo = ({
                     alt="Bitcoin Logo"
                     src={BitcoinLogo}
                     onClick={() => onClickCoinLogo()}
+                    title="Bitcoin"
                 />
             )
     }

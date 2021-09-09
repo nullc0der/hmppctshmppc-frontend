@@ -16,10 +16,6 @@
         }
         .coin-logo {
             width: 70px;
-            &.ethereum,
-            &.polkadot {
-                width: 50px;
-            }
             @include media-breakpoint-down(sm) {
                 width: 50px;
                 &.ethereum {

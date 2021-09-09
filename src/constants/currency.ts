@@ -4,7 +4,7 @@ const currency: ICurrency = {
     bitcoin: {
         ticker: 'BTC'
     },
-    cardano: {
+    ada: {
         ticker: 'ADA'
     },
     dogecoin: {

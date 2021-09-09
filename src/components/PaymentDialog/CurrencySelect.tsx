@@ -27,6 +27,7 @@ const CurrencySelect = ({
                         currencyName={'monero'}
                         onClickCoinLogo={() => onClickCoinLogo('monero')}
                     />
+                    {/* NOTE: Need to change ada to cardano and all relevant places */}
                     <CoinLogo
                         currencyName={'ada'}
                         onClickCoinLogo={() => onClickCoinLogo('ada')}
