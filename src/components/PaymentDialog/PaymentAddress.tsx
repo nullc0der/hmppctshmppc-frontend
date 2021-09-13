@@ -134,15 +134,19 @@ const PaymentAddress = ({
             <CoinLogo currencyName={selectedCurrency} />
             {!showComingSoon ? (
                 <>
-                    {/* <span className="mt-3">
-                        Send a minimum crypto payment to the {selectedCurrency}{' '}
-                        address below.
-                    </span> */}
-                    <span className="mt-3">
-                        Suggested minimum amount of {selectedCurrency} to send 
-                        {currencyAmountPerUSD}
-                        {CURRENCY[selectedCurrency]['ticker']} = $1USD
-                    </span>
+                    {currencyAmountPerUSD ? (
+                        <span className="mt-3">
+                            Suggested minimum amount of {selectedCurrency} to
+                            send 
+                            {currencyAmountPerUSD}
+                            {CURRENCY[selectedCurrency]['ticker']} = $1USD
+                        </span>
+                    ) : (
+                        <span className="mt-3">
+                            Send a minimum crypto payment to the{' '}
+                            {selectedCurrency} address below.
+                        </span>
+                    )}
                     <div className="alert alert-secondary mt-2">
                         {!paymentAddressFetchError ? (
                             paymentAddress ? (
