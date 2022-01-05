@@ -1,19 +1,11 @@
-import apiBase from "api/base";
+import apiBase from 'api/base'
 
-type initiatePaymentData = {
-    currency: string
-}
-
-type checkPaymentStatusData = {
-    payment_id: string
-}
-
-export const initiatePayment = (data: initiatePaymentData) => {
+export const initiatePayment = () => {
     const url: string = '/initiatepayment/'
-    return apiBase.post(url, data)
+    return apiBase.post(url)
 }
 
-export const checkPaymentStatus = (data: checkPaymentStatusData) => {
-    const url: string = '/checkpaymentcompleted/'
+export const postPaymentSuccess = (data: any) => {
+    const url: string = '/postpaymentsuccess/'
     return apiBase.post(url, data)
 }

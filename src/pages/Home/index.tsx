@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import classnames from 'classnames'
+import get from 'lodash/get'
 
 import { useMatomo } from '@datapunt/matomo-tracker-react'
 
@@ -7,19 +8,45 @@ import Header from 'components/Header'
 import Stats from 'components/Stats'
 import About from 'components/About'
 import Footer from 'components/Footer'
+import EkataGPForm from 'components/EkataGP'
+
+import { initiatePayment, postPaymentSuccess } from 'api/payment'
+import { setAccessToken } from 'utils/store'
 
 import s from './Home.module.scss'
 
 const Home = () => {
     const [showStat, setShowStat] = useState(false)
-    const [showPaymentDialog, setShowPaymentDialog] = useState(false)
+    const [formID, setFormID] = useState('')
 
     const { trackEvent, trackPageView } = useMatomo()
 
-    const handlePaymentDialogClose = () => setShowPaymentDialog(false)
     const handlePaymentDialogShow = () => {
         trackEvent({ category: 'Dialog', action: 'Open', name: 'Payment' })
-        setShowPaymentDialog(true)
+        initiatePayment().then((response) => {
+            if (response.ok) {
+                setFormID(get(response.data, 'form_id', ''))
+            }
+        })
+    }
+
+    const onPaymentFormError = (data: any) => {
+        console.log(data)
+    }
+
+    const onClosePaymentForm = (data: any) => {
+        console.log(data)
+    }
+
+    const onSuccessPayment = (payload: any) => {
+        postPaymentSuccess(payload).then((response) => {
+            if (response.ok) {
+                setAccessToken({
+                    access_token: get(response.data, 'access_token', ''),
+                })
+                setShowStat(true)
+            }
+        })
     }
 
     useEffect(() => {
@@ -32,12 +59,7 @@ const Home = () => {
     return (
         <div className={cx}>
             <div className="header-section">
-                <Header
-                    showPaymentDialog={showPaymentDialog}
-                    handlePaymentDialogClose={handlePaymentDialogClose}
-                    handlePaymentDialogShow={handlePaymentDialogShow}
-                    setShowStat={() => setShowStat(true)}
-                />
+                <Header handlePaymentDialogShow={handlePaymentDialogShow} />
             </div>
             <div className="stats-section">
                 <Stats
@@ -51,6 +73,12 @@ const Home = () => {
             <div className="footer-section">
                 <Footer />
             </div>
+            <EkataGPForm
+                formID={formID}
+                onError={onPaymentFormError}
+                onCloseForm={onClosePaymentForm}
+                onSuccess={onSuccessPayment}
+            />
         </div>
     )
 }
