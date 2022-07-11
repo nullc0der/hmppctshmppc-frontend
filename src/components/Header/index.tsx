@@ -13,8 +13,11 @@ const Header = ({ className, handlePaymentDialogShow }: HeaderProps) => {
 
     return (
         <div className={cx} style={{ backgroundImage: `url(${HeaderBG})` }}>
-            <p>Want to know how many people paid crypto to see</p>
-            <p>how many people paid crypto?</p>
+            <p>
+                Spend your crypto dust to see how many people spent their crypto
+                dust.
+            </p>
+            <p>Use your leftover crypto to see results.</p>
             <button
                 className="btn btn-small btn-header-red"
                 onClick={handlePaymentDialogShow}>
