@@ -23,3 +23,7 @@ Start dev server
 ```
     yarn start
 ```
+
+### Screenshot
+
+Head over to [screenshot](/screenshots) for some screenshots
